@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "My_font";
+    src: url(../fonts/Roboto-Medium.ttf);
+    font-weight: bold;
+    font-size: 5rem;
+    /*-webkit-font-smoothing: antialiased;*/
+    /*-moz-osx-font-smoothing: grayscale;*/
+}
+
+
+.App{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "My_font";
+    color: #083f85;
+    font-size: 1.5rem;
+}
+
+.Subject{
+    width: 500px;
+    height: 500px;
+    margin-top: 250px;
+    padding: 20px;
+    border: rgba(52, 145, 0, 1) solid 4px;
+}
+
+.Note{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0px;
+    padding: 4px 10px;
+    border: rgba(52, 145, 0, .3) 3px solid ;
+}
+
+.NoteForm{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0px;
+    padding-right: 10px;
+    /*padding: 4px 10px;*/
+}
+
+button {
+    margin-left: 5px ;
+    background: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    border:none;
+    background-color: #d1d0d0;
+    border-radius: 5px;
+}
+
+
+input {
+    align-self: stretch;
+    width: 350px;
+    border-radius: 15px;
+    border: rgba(8, 63, 133, .5) 3px solid ;
+    font-size: 1.5rem;
+    padding: 4px 10px;
+    color: #083f85;
+}
+
+.add-button {
+    width: 80px;
+    background-color: #083f85;
+    color: white;
+}
+
+.delete-button{
+    width: 80px;
+
+    /*border-color: rgba(52, 145, 0, .3);*/
+    /*color: #000000;*/
+    /*margin-right: 50px;*/
+}
