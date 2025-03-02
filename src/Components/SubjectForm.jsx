@@ -3,7 +3,7 @@ import MyInput from "./MyInput";
 import MyButton from "./MyButton";
 // import "../styles/App.css"
 
-const SubjectForm = ({addSubject}) => {
+const SubjectForm = ({addSubject, addNotesList}) => {
 
     const [subject, setSubject] = useState(
         {title: "", subTitle: ""}

@@ -5,6 +5,22 @@ import NoteForm from "./NoteForm";
 
 const Subject = ({subject, addNote, removeNote}) => {
 
+    console.log(subject);
+
+
+    if (!subject) {
+        // console.log("")
+
+        return (
+            <div>
+                Предметов нет
+            </div>
+    )
+    }
+
+    console.log("Проверка не сработала")
+
+
     const {title, subTitle, notes} = subject;
 
     // console.log(notes);
