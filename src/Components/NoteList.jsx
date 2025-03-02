@@ -2,6 +2,7 @@ import React from 'react';
 import NoteItem from "./NoteItem";
 
 const NoteList = ({notes, removeNote}) => {
+
     return (
         <ul>
             {notes.map(note => (

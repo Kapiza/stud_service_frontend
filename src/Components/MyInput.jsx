@@ -1,8 +1,9 @@
 import React from 'react';
+import "../styles/App.css"
 
-function MyInput(props) {
+function MyInput( {className,...props}) {
     return (
-        <input maxLength={30} {...props}></input>
+        <input className={className} {...props}></input>
     );
 }
 

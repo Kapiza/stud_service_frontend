@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+html, body, #root, .App {
+    height: 100%;
+}
+
+
+
 @font-face {
     font-family: "My_font";
     src: url(../fonts/Roboto-Medium.ttf);
@@ -13,23 +19,42 @@
     /*-moz-osx-font-smoothing: grayscale;*/
 }
 
+/**/
 
 .App{
     display: flex;
-    justify-content: center;
     align-items: center;
     font-family: "My_font";
     color: #083f85;
     font-size: 1.5rem;
 }
 
+.SubjectMenu {
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.SubjectMenu > * {
+    display: flex;
+    flex-direction: column;
+}
+
 .Subject{
+    /*Центрируем Subject*/
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 500px;
     height: 500px;
-    margin-top: 250px;
     padding: 20px;
     border: rgba(52, 145, 0, 1) solid 4px;
 }
+
+.SubjectForm{
+    display: flex;
+    flex-direction: column;
+}
+
+/**/
 
 .Note{
     display: flex;
@@ -47,36 +72,85 @@
     /*padding: 4px 10px;*/
 }
 
+/**/
+
+input, .note-input, .card-input {
+    align-self: stretch;
+    width: 350px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    padding: 4px 10px;
+}
+
+.note-input, .card-input{
+    outline: none;
+    border: rgba(8, 63, 133, .5) 3px solid ;
+    color: #083f85;
+}
+
+.card-input{
+    margin-top: 10px;
+}
+
+
 button {
+    padding: 2px 10px;
     margin-left: 5px ;
-    background: transparent;
+    /*background: transparent;*/
     font-size: 1rem;
     cursor: pointer;
     border:none;
-    background-color: #d1d0d0;
+    background-color: #e6e4e4;
     border-radius: 5px;
 }
 
 
-input {
-    align-self: stretch;
-    width: 350px;
-    border-radius: 15px;
-    border: rgba(8, 63, 133, .5) 3px solid ;
-    font-size: 1.5rem;
-    padding: 4px 10px;
-    color: #083f85;
+
+.select-button, .add-card-button{
+    margin-top: 5%;
+    font-size: 2rem;
 }
 
-.add-button {
-    width: 80px;
+
+/**/
+
+.select-button{
+    color: rgba(8, 63, 133);
+}
+
+.select-button:focus {
+    outline: none;
+    color: rgba(8, 63, 133);
+    background-color: rgba(52, 145, 0, 0.5);
+}
+
+.select-button:hover:focus {
+    color: rgba(8, 63, 133);
+}
+
+.select-button:hover {
+    transition: 0.3s;
+    color: #ff0000;
+}
+
+
+
+/**/
+
+.add-card-button, .add-button{
     background-color: #083f85;
     color: white;
 }
 
-.delete-button{
-    width: 80px;
+.add-card-button {}
 
+.add-button {
+    width: 100px;
+
+}
+
+.delete-button{
+    width: 95px;
     /*border-color: rgba(52, 145, 0, .3);*/
     /*color: #000000;*/
     /*margin-right: 50px;*/
