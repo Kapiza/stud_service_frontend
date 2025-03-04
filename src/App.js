@@ -1,17 +1,17 @@
 import './styles/App.css'
 import Subject from "./Components/Subject";
-import {useEffect, useMemo, useState} from "react";
+import {useMemo, useState} from "react";
 import SubjectMenu from "./Components/SubjectMenu";
 import MyModal from "./Components/MyModal";
 import SubjectForm from "./Components/SubjectForm";
-import subject from "./Components/Subject";
 
 function App() {
 
     const [notes, setNotes] = useState([])
     const [notesLists, setNotesLists] = useState([notes, notes, notes]);
 
-    const [subjects, setSubjects] = useState([
+    const [subjects, setSubjects] = useState(
+        [
         {
             id: Date.now(),
             title: "Математика",
@@ -30,15 +30,14 @@ function App() {
             subTitle: "Дербень А.М.",
             notes: notesLists[2]
         }
-    ]);
+    ]
+    );
 
 
     const addSubject = (newSubject) => {
         //Создаем notesList для нашего subject
         setNotesLists([...notesLists, []]);
         newSubject.notes = notesLists.at(-1);
-
-        // console.log("ха");
 
         setSubjects([...subjects, newSubject])
 
@@ -52,29 +51,15 @@ function App() {
 
         setNotesLists(notesLists.filter((item, i) => i !== index));
         setSubjects(subjects.filter((s) => s.id !== subject.id))
-
-        // if (SSI >= subjects.length) {
-        //     setSSI(Math.max(subjects.length - 1, 0));
-        // }
-        // removeSubject(subject.notes)
     }
 
-    // const addNotesList = () => {
-    //     setNotesLists([...notesLists, []]);
-    // }
-
-    // const removeNotesList = (notesList) => {
-    //     setNotesLists(notesLists.filter((item, index) => index !== notesList.indexOf()));
-    // }
 
     const addNote = (newNote) => {
         setNotes([...notes, newNote]);
-        // console.log(notes);
     }
 
     const removeNote = (note) => {
         setNotes(notes.filter(n => n.id !== note.id));
-        // console.log("removeNote");
     }
 
 
@@ -84,11 +69,11 @@ function App() {
 
 
     // Для корректного связывания состояний
-    useEffect(() => {
+    useMemo(() => {
         setNotes(notesLists[SSI])
     }, [SSI])
 
-    useEffect(() => {
+    useMemo(() => {
         setNotesLists((prevState) => {
             const updatedState = [...prevState];
 
@@ -97,7 +82,7 @@ function App() {
         })
     }, [notes])
 
-    useEffect(() => {
+    useMemo(() => {
         setSubjects(prevState => {
             const updatedState = [...prevState];
             if (notesLists[SSI]) { //God, please...
@@ -109,11 +94,6 @@ function App() {
             return updatedState;
         })
     }, [notesLists])
-    //
-    // console.log("notes " + notes)
-    // console.log("notesLists " + notesLists)
-    // console.log("subjects " + subjects)
-
 
     return (
 
@@ -124,7 +104,6 @@ function App() {
             <MyModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
                 <SubjectForm addSubject={addSubject}/>
             </MyModal>
-            {/*<Subject notes={notes} removeNote={removeNote} createNote={createNote} title={"Математика"} teacher={"Кириллов К.А."}/>*/}
         </div>
     );
 }

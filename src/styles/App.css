@@ -104,13 +104,10 @@ button {
     border-radius: 5px;
 }
 
-
-
 .select-button, .add-card-button, .delete-card-button{
     margin-top: 5%;
     font-size: 2rem;
 }
-
 
 /**/
 
@@ -133,8 +130,6 @@ button {
     color: #c60a0a;
 }
 
-
-
 /**/
 
 .add-card-button, .add-button{
@@ -153,8 +148,4 @@ button {
 
 .delete-button {
     width: 95px;
-
-    /*border-color: rgba(52, 145, 0, .3);*/
-    /*color: #000000;*/
-    /*margin-right: 50px;*/
 }

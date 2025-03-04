@@ -1,37 +1,20 @@
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
 import "../styles/App.css"
 import NoteList from "./NoteList";
 import NoteForm from "./NoteForm";
 
 const Subject = ({subject, addNote, removeNote}) => {
 
-    console.log(subject);
-
-
     if (!subject) {
-        // console.log("")
-
         return (
-            <div>
-                Предметов нет
+            // В стилях центрируем сообщение
+            <div style={{ position: "absolute", top:  "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+                Предмет не выбран
             </div>
     )
     }
 
-    console.log("Проверка не сработала")
-
-
     const {title, subTitle, notes} = subject;
-
-    // console.log(notes);
-
-    // const [notes, setNotes] = useState([]
-    //     // {id:1, title:"Лабораторная 1"},
-    // );
-
-
-
-
 
     return (
         <div className="Subject">

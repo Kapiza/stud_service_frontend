@@ -3,6 +3,8 @@ import NoteItem from "./NoteItem";
 
 const NoteList = ({notes, removeNote}) => {
 
+    console.log(notes);
+
     return (
         <ul>
             {notes.map(note => (

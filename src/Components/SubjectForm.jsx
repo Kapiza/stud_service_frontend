@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import MyInput from "./MyInput";
 import MyButton from "./MyButton";
-// import "../styles/App.css"
 
-const SubjectForm = ({addSubject, addNotesList}) => {
+const SubjectForm = ({addSubject}) => {
 
     const [subject, setSubject] = useState(
         {title: "", subTitle: ""}
