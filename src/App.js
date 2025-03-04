@@ -1,37 +1,30 @@
 import './styles/App.css'
 import Subject from "./Components/Subject";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import SubjectMenu from "./Components/SubjectMenu";
 import MyModal from "./Components/MyModal";
 import SubjectForm from "./Components/SubjectForm";
+import axios from "axios";
 
 function App() {
 
-    const [notes, setNotes] = useState([])
-    const [notesLists, setNotesLists] = useState([notes, notes, notes]);
+    const [data, setData] = useState(null);
 
-    const [subjects, setSubjects] = useState(
-        [
-        {
-            id: Date.now(),
-            title: "Математика",
-            subTitle: "Кириллов",
-            notes: notesLists[0]
-        },
-        {
-            id: Date.now() + 1,
-            title: "Программирование",
-            subTitle: "Моргунов",
-            notes: notesLists[1]
-        },
-        {
-            id: Date.now() + 2,
-            title: "Информационные технологии",
-            subTitle: "Дербень А.М.",
-            notes: notesLists[2]
-        }
-    ]
-    );
+    async function fetchData() {
+        const response = await axios.get("http://localhost:5000/get")
+        console.log(response.data)
+        setSubjects(response.data.subjects);
+        setNotesLists(response.data.notesLists);
+    }
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    //
+
+    const [notes, setNotes] = useState([])
+    const [notesLists, setNotesLists] = useState([]);
+    const [subjects, setSubjects] = useState([]);
 
 
     const addSubject = (newSubject) => {
@@ -95,8 +88,9 @@ function App() {
         })
     }, [notesLists])
 
-    return (
 
+
+    return (
         <div className="App">
             <SubjectMenu subjects={subjects} setSSI={setSSI} setModalVisible={setModalVisible}
                          removeSubject={removeSubject}/>
