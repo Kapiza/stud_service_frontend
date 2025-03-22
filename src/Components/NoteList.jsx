@@ -3,7 +3,7 @@ import NoteItem from "./NoteItem";
 
 const NoteList = ({notes, removeNote}) => {
 
-    console.log(notes);
+    // console.log(notes);
 
     return (
         <ul>

@@ -5,13 +5,14 @@ import MyButton from "./MyButton";
 const SubjectForm = ({addSubject}) => {
 
     const [subject, setSubject] = useState(
-        {title: "", subTitle: ""}
+        {title: "", subTitle: "", notes: []},
     );
 
     const createSubject = () => {
         subject.id = Date.now();
+        setSubject({title: "", subTitle: "", notes: []});
         addSubject(subject);
-        setSubject({title: "", subTitle: ""});
+        // setSubject({title: "", subTitle: "", notes: [{id: 124, title: "ООО"}]});
     }
 
     return (

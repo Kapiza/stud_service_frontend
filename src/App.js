@@ -1,6 +1,6 @@
 import './styles/App.css'
 import Subject from "./Components/Subject";
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import SubjectMenu from "./Components/SubjectMenu";
 import MyModal from "./Components/MyModal";
 import SubjectForm from "./Components/SubjectForm";
@@ -8,87 +8,70 @@ import axios from "axios";
 
 function App() {
 
-    const [data, setData] = useState(null);
-
-    async function fetchData() {
+    async function get() {
         const response = await axios.get("http://localhost:5000/get")
-        console.log(response.data)
+
         setSubjects(response.data.subjects);
-        setNotesLists(response.data.notesLists);
     }
+    const uri = "http://localhost:5000/post";
+
+    async function post(postData) {
+         await axios.post(uri, postData)
+    }
+
+    async function put(updatedData) {
+        await axios.put("http://localhost:5000/update", updatedData)
+    }
+
+    async function deleteMethod(deletedData) {
+        await axios.delete("http://localhost:5000/delete",  { data: deletedData });
+    }
+
     useEffect(() => {
-        fetchData()
+        get();
     }, [])
 
     //
 
-    const [notes, setNotes] = useState([])
-    const [notesLists, setNotesLists] = useState([]);
+
     const [subjects, setSubjects] = useState([]);
 
-
     const addSubject = (newSubject) => {
-        //Создаем notesList для нашего subject
-        setNotesLists([...notesLists, []]);
-        newSubject.notes = notesLists.at(-1);
-
+        post(newSubject)
         setSubjects([...subjects, newSubject])
-
         setModalVisible(false)
     }
 
     const removeSubject = (subject) => {
-        // Получаем индекс subject для удаления соответсвующего notesList
-        let index = subjects.indexOf(subject);
-
-
-        setNotesLists(notesLists.filter((item, i) => i !== index));
         setSubjects(subjects.filter((s) => s.id !== subject.id))
+
+        deleteMethod({SSI, subject })
+
     }
 
+    const addNote = (note) => {
+        const list  = [...subjects];
+        list[SSI].notes.push(note);
+        setSubjects([...list]);
 
-    const addNote = (newNote) => {
-        setNotes([...notes, newNote]);
+        put({SSI, note, add: true});
     }
 
     const removeNote = (note) => {
-        setNotes(notes.filter(n => n.id !== note.id));
-    }
+        const list  = [...subjects];
+        list[SSI] = {
+            ...list[SSI],
+            notes: list[SSI].notes.filter(n => n.id !== note.id)
+        };
+        setSubjects([...list]);
+        // const updatedData ;
+        put({SSI, note, add:false});
 
+    }
 
     const [SSI, setSSI] = useState(0) // selectedSubjectIndex
 
     const [modalVisible, setModalVisible] = useState(false);
-
-
-    // Для корректного связывания состояний
-    useMemo(() => {
-        setNotes(notesLists[SSI])
-    }, [SSI])
-
-    useMemo(() => {
-        setNotesLists((prevState) => {
-            const updatedState = [...prevState];
-
-            updatedState[SSI] = notes
-            return updatedState;
-        })
-    }, [notes])
-
-    useMemo(() => {
-        setSubjects(prevState => {
-            const updatedState = [...prevState];
-            if (notesLists[SSI]) { //God, please...
-                updatedState[SSI] = {
-                    ...updatedState[SSI],
-                    notes: notesLists[SSI],
-                }
-            }
-            return updatedState;
-        })
-    }, [notesLists])
-
-
 
     return (
         <div className="App">
@@ -103,4 +86,70 @@ function App() {
 }
 
 export default App;
+
+//     {
+//         id:0,
+//         title:"1",
+//         subTitle:"Кириллов Р. Р.",
+//         notes: [
+//             {
+//                 id: 1,
+//                 title: "Раз"
+//             },
+//             {
+//                 id: 2,
+//                 title: "Раз-Два"
+//             }
+//         ]
+//     },
+//     {
+//         id:1,
+//         title:"2",
+//         subTitle:"Кириллов Р. Р.",
+//         notes: [
+//             {
+//                 id: 3,
+//                 title: "Два"
+//             }
+//         ]
+//     },
+//     {
+//         id:2,
+//         title:"3",
+//         subTitle:"Кириллов Р. Р.",
+//         notes:  [
+//             {
+//                 id: 4,
+//                 title: "Три"
+//             }
+//         ]
+//     },
+
+// const [notes, setNotes] = useState([]);
+// const [notesLists, setNotesLists] = useState(
+//     [
+//         [
+//             {
+//                 id: 1,
+//                 title: "Раз"
+//             },
+//             {
+//                 id: 2,
+//                 title: "Раз-Два"
+//             }
+//         ],
+//         [
+//             {
+//                 id: 3,
+//                 title: "Два"
+//             }
+//         ],
+//         [
+//             {
+//                 id: 4,
+//                 title: "Три"
+//             }
+//         ]
+//     ]
+// );
 

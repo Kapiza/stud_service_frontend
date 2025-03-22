@@ -15,8 +15,6 @@ html, body, #root, .App {
     src: url(../fonts/Roboto-Medium.ttf);
     font-weight: bold;
     font-size: 5rem;
-    /*-webkit-font-smoothing: antialiased;*/
-    /*-moz-osx-font-smoothing: grayscale;*/
 }
 
 /**/
@@ -138,7 +136,7 @@ button {
 }
 
 .add-button {
-    width: 100px;
+    width: 125px;
 }
 
 .delete-card-button, .delete-button{

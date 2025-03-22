@@ -9,7 +9,7 @@ const Subject = ({subject, addNote, removeNote}) => {
         return (
             // В стилях центрируем сообщение
             <div style={{ position: "absolute", top:  "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
-                Предмет не выбран
+                Карточка не выбрана
             </div>
     )
     }
